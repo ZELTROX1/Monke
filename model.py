@@ -19,7 +19,7 @@ os.environ["LANGCHAIN_TRACING_V2"] = os.getenv("LANGCHAIN_TRACING_V2", "true")
 os.environ["COHERE_API_KEY"] = os.getenv("COHERE_API_KEY")
 os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY")
 
-g = Github(os.getenv("git_token"))
+g = Github(os.getenv("GITHUB_TOKEN"))
 
 llm = ChatCohere(model="command-r-plus", cohere_api_key=os.getenv("COHERE_API_KEY"))
 parser = StrOutputParser()
