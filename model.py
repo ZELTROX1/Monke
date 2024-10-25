@@ -10,19 +10,28 @@ from langchain_cohere import ChatCohere
 from langchain.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from dotenv import load_dotenv
+from pydantic import BaseModel
+from langchain.output_parsers import PydanticOutputParser
 
 # Initialize Flask app
 app = Flask(__name__)
 
-load_dotenv(".env")
+load_dotenv()
 os.environ["LANGCHAIN_TRACING_V2"] = os.getenv("LANGCHAIN_TRACING_V2", "true")
 os.environ["COHERE_API_KEY"] = os.getenv("COHERE_API_KEY")
 os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY")
 
 g = Github(os.getenv("GITHUB_TOKEN"))
 
+
+class Summary(BaseModel):
+    title: str
+    summary: str
+    key_points: list[str]
+
 llm = ChatCohere(model="command-r-plus", cohere_api_key=os.getenv("COHERE_API_KEY"))
 parser = StrOutputParser()
+output_parser = PydanticOutputParser(pydantic_object=Summary)
 embedder = SentenceTransformer('all-MiniLM-L6-v2')
 
 # Initialize FAISS index and file tracking
@@ -32,21 +41,24 @@ file_paths = []
 repo_files = {}
 
 system_prompt = """
-You are an expert software engineer and code reviewer. Your goal is to provide detailed, constructive, and context-aware feedback on code, focusing on best practices, readability, optimization, and maintainability. When reviewing code, consider:
+You are an expert software engineer and code reviewer. Your objective is to provide focused, constructive feedback on code, emphasizing best practices, readability, efficiency, and security. Prioritize concise, actionable suggestions.
 
-- Code Structure: Assess the organization, logic flow, and modularity of the code.
-- Readability and Documentation: Comment on naming conventions, inline comments, and overall clarity of the code.
-- Efficiency and Optimization: Identify any areas where performance can be improved, including unnecessary computations, memory usage, or any potential bottlenecks.
-- Error Handling and Robustness: Ensure the code includes error handling and is resilient to edge cases.
-- Security: Point out any security vulnerabilities or risks, such as exposure to injections, unsafe data handling, or other potential security flaws.
-- Adherence to Language or Framework Best Practices: Make sure the code follows best practices specific to the language or framework being used.
+- Structure: Evaluate code organization, logic flow, and modularity.
+- Readability: Assess naming conventions, inline comments, and clarity.
+- Optimization: Identify areas for performance improvement, reducing unnecessary computations or memory usage.
+- Robustness: Verify error handling and edge-case coverage.
+- Security: Flag vulnerabilities, such as unsafe data handling or injection risks.
+- Best Practices: Ensure adherence to language or framework-specific guidelines.
 
-When providing feedback, prioritize constructive and actionable advice. Offer clear examples or alternatives for any suggested changes. Avoid generic comments and be as specific as possible to help the author understand areas for improvement.
+When suggesting changes, list each on a new line for readability, formatted as: Suggestion 1 /n Suggestion 2 /n Suggestion 3. Avoid generic feedback; be as specific as possible and use examples where helpful.
+
+Summary: Provide a brief overview of strengths and areas for improvement.
 """
 
 prompt_template = PromptTemplate(
     input_variables=["system_prompt", "context", "query"],
-    template="{system_prompt}\n\nHere are some relevant files: {context}\n\nUser's question: {query}\nAnswer:"
+    template="{system_prompt}\n\nHere are some relevant files: {context}\n\nUser's question: {query}\nAnswer:",
+    partial_variables={"format_instructions": output_parser.get_format_instructions()},
 )
 
 def fetch_github_repo_files(repo_name):
@@ -89,11 +101,20 @@ def search_faiss(query, top_k=3):
 def fetch_file_content(file_paths, repo_files):
     return "\n\n".join([repo_files[file] for file in file_paths])
 
+
+
 def generate_response(query, context):
     prompt = prompt_template.format(system_prompt=system_prompt, context=context, query=query)
-    chain = llm | parser 
+    chain =llm | parser
     response = chain.invoke(prompt)
     return response
+
+# def generate_response(query, context):
+#     prompt = prompt_template.format(system_prompt=system_prompt, context=context, query=query)
+#     response = llm(prompt)  # Directly call `llm`
+#     parsed_response = parser.parse(response)
+#     return parsed_response
+
 
 # Route to serve HTML form
 @app.route('/')
