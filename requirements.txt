@@ -1,0 +1,13 @@
+PyGithub==1.59.0
+
+# Cohere client for embeddings and language generation
+cohere==4.9.0
+
+# FAISS for similarity search and vector storage
+faiss-cpu==1.7.4
+
+# LangChain for building retrieval-augmented pipelines (optional, if you're using it)
+langchain==0.0.256
+
+# NumPy for handling embeddings and vectors
+numpy==1.24.2
