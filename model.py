@@ -11,7 +11,6 @@ from langchain.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from dotenv import load_dotenv
 from pydantic import BaseModel
-from langchain.output_parsers import PydanticOutputParser
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -24,14 +23,8 @@ os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY")
 g = Github(os.getenv("git_token"))
 
 
-class Summary(BaseModel):
-    title: str
-    summary: str
-    key_points: list[str]
-
-llm = ChatCohere(model="command-r-plus", cohere_api_key=os.getenv("COHERE_API_KEY"))
+llm = ChatCohere(model="command-r-plus", cohere_api_key=os.getenv("COHERE_API_KEY"),temperature=0.5)
 parser = StrOutputParser()
-output_parser = PydanticOutputParser(pydantic_object=Summary)
 embedder = SentenceTransformer('all-MiniLM-L6-v2')
 
 # Initialize FAISS index and file tracking
@@ -58,7 +51,6 @@ Summary: Provide a brief overview of strengths and areas for improvement.
 prompt_template = PromptTemplate(
     input_variables=["system_prompt", "context", "query"],
     template="{system_prompt}\n\nHere are some relevant files: {context}\n\nUser's question: {query}\nAnswer:",
-    partial_variables={"format_instructions": output_parser.get_format_instructions()},
 )
 
 def fetch_github_repo_files(repo_name):
