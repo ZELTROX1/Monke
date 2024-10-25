@@ -30,6 +30,7 @@ embedder = SentenceTransformer('all-MiniLM-L6-v2')
 # Initialize FAISS index and file tracking
 dimension = 384
 index = faiss.IndexFlatL2(dimension)
+index2 = faiss.IndexFlatL2(dimension)
 file_paths = []
 repo_files = {}
 
@@ -75,10 +76,10 @@ def update_rag_index(repo_name):
 
     for path, content in repo_files.items():
         embedding = embed_text_with_transformers(content)
-        index.add(np.array([embedding], dtype=np.float32))
+        index2.add(np.array([embedding], dtype=np.float32))
         file_paths.append(path)
 
-    print(f"Re-indexed {len(file_paths)} files from {repo_name}.")
+    print(f"Indexed to new RAG {len(file_paths)} files from {repo_name}.")
 
 def embed_text_with_transformers(text):
     return embedder.encode(text)
@@ -101,14 +102,7 @@ def generate_response(query, context):
     response = chain.invoke(prompt)
     return response
 
-# def generate_response(query, context):
-#     prompt = prompt_template.format(system_prompt=system_prompt, context=context, query=query)
-#     response = llm(prompt)  # Directly call `llm`
-#     parsed_response = parser.parse(response)
-#     return parsed_response
 
-
-# Route to serve HTML form
 @app.route('/')
 def home():
     return '''
