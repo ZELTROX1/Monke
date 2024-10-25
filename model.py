@@ -12,12 +12,12 @@ from langchain_core.output_parsers import StrOutputParser
 parser = StrOutputParser()
 
 #API's
-os.environ["LANGCHAIN_TRACING_V2"] = "true"
-os.environ["COHERE_API_KEY"] = "erRXVPlld5CdbQYiaiicWrKf36i2ToyBiUakSJqm"
-os.environ["LANGCHAIN_API_KEY"] = "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"
+os.environ["LANGCHAIN_TRACING_V2"] = os.getenv("LANGCHAIN_TRACING_V2")
+os.environ["COHERE_API_KEY"] = os.getenv("COHERE_API_KEY")
+os.environ["LANGCHAIN_API_KEY"] =os.getenv("LANGCHAIN_API_KEY")
 
 #Github token
-g = Github("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")
+g = Github(os.getenv("git_tocken"))
 
 # Fetch files from GitHub repository
 def fetch_github_repo_files(repo_name):
@@ -90,7 +90,7 @@ When providing feedback, prioritize constructive and actionable advice. Offer cl
 prompt_template = PromptTemplate(input_variables=["system_prompt", "context", "query"], 
                                  template="{system_prompt}\n\nHere are some relevant files: {context}\n\nUser's question: {query}\nAnswer:")
 
-query = "suggest 5 possible changes to optimise"
+query = "suggest 5 possible changes to optimise  "
 
 relevant_files = search_faiss(query, top_k=3)
 
