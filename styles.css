@@ -1,0 +1,459 @@
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+    color: #ffffff;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+ 
+
+header {
+  display: flex; /* Align items horizontally */
+  justify-content: space-between; /* Space between logo and navigation */
+  align-items: center; /* Center items vertically */
+  position: fixed; /* Fixes the header at the top */
+  height: 50px;
+  top: 0; /* Aligns it to the top */
+  left: 0; /* Aligns it to the left edge */
+  width: 100%; /* Full width of the viewport */
+  padding: 10px 10px; /* Padding for the header */
+  backdrop-filter: blur(10px); /* Blur effect for the header */
+  background-color: rgba(16, 3, 34, 0); /* Semi-transparent background */
+  z-index: 100; /* Ensures the header stays above other content */
+}
+
+nav {
+  display: flex; /* Flexbox for horizontal layout of nav links */
+  gap: 20px; /* Space between the links */
+  padding: 30px;
+  
+}
+
+nav a {
+    color: white; /* Link text color */
+    text-decoration: none; /* Remove underline initially */
+    font-size: 16px; /* Font size for nav links */
+    padding: 5px 0; /* Add padding for underline hover effect */
+    position: relative; /* Position relative for underline effect */
+    transition: color 0.3s ease; /* Smooth transition for text color */
+    
+}
+
+nav a::after {
+    content: ''; /* Empty content to create the underline */
+    position: absolute; /* Position it relative to the link */
+    left: 0;
+    bottom: 0;
+    width: 0; /* Start with no underline width */
+    height: 2px; /* Set the thickness of the underline */
+    background-color: rgb(101, 17, 228); /* Underline color */
+    transition: width 0.3s ease; /* Animate the width of the underline */
+}
+
+nav a:hover::after {
+    width: 100%; /* On hover, expand underline to full width */
+}
+
+nav a:hover {
+    color:  rgb(101, 17, 228); /* Change link color on hover */
+}
+
+
+  /* Hero Section */
+  .hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    color: white;
+  }
+
+  /* Background video */
+  .hero video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+    opacity: 0.4;
+    object-fit: cover;
+  }
+
+  .hero h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.5em;
+    margin: 0;
+    animation: textSlideIn 2s ease-out forwards;
+    opacity: 0;
+    color: #00c8ff;
+  }
+
+  .hero p {
+    font-size: 1.5em;
+    margin-top: 20px;
+    animation: textFadeIn 2s 1s ease-out forwards;
+    opacity: 0;
+  }
+
+  .cta-btn {
+    background-color: #00c8ff;
+    color: black;
+    padding: 15px 30px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    margin-top: 30px;
+    transition: background-color 0.3s, transform 0.3s;
+    display: inline-block;
+    border-radius: 5px;
+  }
+
+  .cta-btn:hover {
+    background-color: #00a3cc;
+    transform: translateY(-5px);
+  }
+
+  /* Keyframes for animations */
+  @keyframes textSlideIn {
+    0% { transform: translateY(50px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+
+  @keyframes textFadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+ /* Features Section */
+.features {
+  padding: 100px 20px;
+  text-align: center;
+  background: black;
+}
+
+.features h3 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+}
+
+.feature-cards {
+  display: grid; /* Use grid for layout */
+  grid-template-columns: repeat(2, 1fr); /* Create two equal-width columns */
+  gap: 30px; /* Space between the cards */
+  justify-content: center; /* Center the grid in the container */
+}
+
+.feature-card {
+  background-color: #100322;
+  color: #ffffff;
+  padding: 40px;
+  border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  text-align: left;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 30px rgb(111, 82, 204);
+}
+
+.feature-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5em;
+  margin-top: 10px;
+}
+
+.feature-card img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px; /* Add space below the image */
+}
+
+.testimonials {
+ 
+  text-align: center;
+  background-color: black;
+}
+
+.testimonials h2 {
+  font-size: 36px;
+  margin-bottom: 40px;
+  color: white; /* Optional: Set title color */
+}
+
+.testimonials-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.testimonial-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  box-sizing: border-box;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.testimonial-content {
+  background-color: #100322;
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid #333;
+  font-size: 16px;
+  color: white; /* Set text color to contrast the dark background */
+}
+
+.testimonial-content p {
+  font-weight: 300;
+  margin-bottom: 30px;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 30px rgba(111, 82, 204, 0.7); /* Purple glow effect */
+}
+
+.testimonial-user {
+  display: flex;
+  align-items: center;
+}
+
+.testimonial-user img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  margin-right: 20px;
+}
+
+.testimonial-user h6 {
+  margin: 0;
+  font-weight: bold;
+  color: white; /* Optional: Set user name color */
+}
+
+.company {
+  font-size: 14px;
+  font-style: italic;
+  color: #a9a9a9; /* Lighter text color for company names */
+}
+
+
+
+  /* Other Sections */
+   .contact, .auth {
+    padding: 100px 20px;
+    text-align: center;
+    background: black;
+    position: relative;
+    overflow: hidden;
+  }
+
+  h3, h4 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    font-family: 'Orbitron', sans-serif;
+    position: relative;
+  }
+
+  .challenge-cards, .resource-cards, .community-cards, .auth-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+
+  .card {
+    background-color: #282828;
+    padding: 40px;
+    border-radius: 10px;
+    width: 300px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 30px rgba(0, 255, 204, 0.5);
+  }
+
+  /* Footer */
+  footer {
+    background-color: #141414;
+    color: #ffffff;
+    padding: 30px;
+    text-align: center;
+  }
+
+  /* Form Styling */
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  input, textarea {
+    width: 300px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: #00c8ff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #00a3cc;
+  }
+  .more{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+    color: orange;
+  }
+  /* Coding Challenges Section */
+/* Coding Challenges Section */
+.challenges {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  background-color: #100322;
+  color: #ffffff;
+}
+
+.challenge-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5%;
+}
+
+.challenges h3 {
+  font-size: 4em;
+  font-family: 'Orbitron', sans-serif;
+  flex-basis: 30%;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.challenge-list {
+  
+  display: flex;
+  
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.challenge-item {
+  padding: 20px 0;
+  font-size: 1.2em;
+}
+
+.challenge-item h4 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.challenge-item p {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+}
+
+.challenge-item hr {
+  margin: 20px 0;
+  border: none;
+  border-top: 1px solid #777777;
+}
+
+/* Highlight the keywords with gradient */
+.highlight {
+  background: linear-gradient(90deg, rgba(111, 82, 204, 1), rgba(0, 122, 128, 1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.footer {
+  background-color: black;
+  padding: 40px 20px;
+  text-align: center;
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer h3 {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.social-links {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.social-links li {
+  display: inline-block;
+}
+
+.social-links li a img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease;
+}
+
+.social-links li a:hover img {
+  transform: scale(1.2);
+}
+
+.footer p {
+  font-size: 0.9em;
+  margin-top: 20px;
+  color: #dddddd;
+}
+#monkelogo{
+  
+    width:200px; /* Set the width of the logo */
+    height: auto; /* Maintain aspect ratio */
+
+}
+#bg-img{
+  z-index: -5;
+}

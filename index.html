@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MONKE - AI-Powered GitHub Code Reviewer</title>
+
+  <!-- AOS Library for scroll animations -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+  <!-- Lottie Player for advanced animations -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+ 
+</head>
+<body>
+
+  <header>
+    <img id="monkelogo" src="monke.png" alt="">
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="#features">Features</a>
+      <a href="#challenges">Challenges</a>
+      <a href="#contact">Contact</a>
+     <!-- <a href="log.html">Login / Sign Up</a>-->
+    </nav>
+  </header>
+
+  <!-- Hero Section with Video Background -->
+  <section class="hero" id="hero" data-aos="fade-up">
+    <video autoplay loop muted src="bg-vid.mp4"></video>
+    <h2>MONKE : The GitHub Code Reviewer bot</h2>
+    <p>AI-driven code analysis, bug detection, best practices, GitHub integration.</p>
+    <a href="https://github.com/apps/monke-9hx" target="_blank" class="cta-btn">Get Started</a>
+  </section>
+
+  
+  <!-- Features Section -->
+ <section class="features" id="features">
+  <h3>Features</h3>
+  <div class="feature-cards">
+    <div class="feature-card" data-aos="flip-left">
+      <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHNjaHJxN2dkNXRqOTVqdDIxZXh0Y2lwOGlrNDlrZXE1cjljN2ZhMiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/bGgsc5mWoryfgKBx1u/giphy.gif" alt="Advanced Code Analysis GIF" style="width: 100px; height: 100px;">
+      <div class="feature-title">Advanced Code Analysis</div>
+      <p>Monke combines NLP and retrieval techniques to generate insightful, context-aware feedback on pull requests.</p>
+    </div>
+
+    <div class="feature-card" data-aos="flip-left" data-aos-delay="100">
+      <img src="https://media.giphy.com/media/L1R1tvI9svkIWwpVYr/giphy.gif" alt="Automated Review Suggestions GIF" style="width: 100px; height: 100px;">
+      <div class="feature-title">Automated Review Suggestions</div>
+      <p>Get tailored suggestions and recommendations for your code to enhance quality and maintainability.</p>
+    </div>
+
+    <div class="feature-card" data-aos="flip-left" data-aos-delay="200">
+      <img src="https://media.giphy.com/media/A85qUySchaEiZyqkGG/giphy.gif" alt="Performance Metrics GIF" style="width: 100px; height: 100px;">
+      <div class="feature-title">Performance Metrics</div>
+      <p>Monitor your code performance with detailed metrics to identify potential bottlenecks and issues.</p>
+    </div>
+
+    <div class="feature-card" data-aos="flip-left" data-aos-delay="300">
+      <img src="https://media.giphy.com/media/ihHdW1IRUVQJ1P5g89/giphy.gif" alt="Future Implementations GIF" style="width: 100px; height: 100px;">
+      <div class="feature-title">Future Implementations</div>
+      <p>We're continuously improving! Look out for features like AI pair programming and real-time collaboration.</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+
+ 
+
+<!-- Challenges Section -->
+<section class="challenges" id="challenges">
+  
+  <div class="challenge-content">
+    <!--<img id="bg-img" src="bg-img.jpg" alt="">-->
+    <h3>Challenges</h3>
+    <div class="challenge-list">
+      <div class="challenge-item" data-aos="fade-up">
+        <h4><span class="highlight">Debugging</span> Issues</h4>
+        <p>Difficulty in identifying and reproducing bugs in complex codebases.</p>
+        <hr />
+      </div>
+      <div class="challenge-item" data-aos="fade-up">
+        <h4><span class="highlight">Code Quality</span> and Maintenance</h4>
+        <p>Managing code complexity and addressing technical debt over time.</p>
+        <hr />
+      </div>
+      <div class="challenge-item" data-aos="fade-up">
+        <h4><span class="highlight">Collaboration</span> and Communication</h4>
+        <p>Handling version control conflicts and ensuring effective team coordination.</p>
+        <hr />
+      </div>
+      <div class="challenge-item" data-aos="fade-up">
+        <h4><span class="highlight">Performance</span> and Scalability</h4>
+        <p>Writing efficient code and ensuring applications can scale effectively under increased load.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+ 
+
+ 
+ <!-- <section class="community" id="community">
+    <h3>Community</h3>
+    <div class="community-cards">
+      Updated Telegram Community Card 
+      <div class="card" data-aos="fade-up">
+        <h4>Telegram Community</h4>
+        <p>Join our Telegram group to connect with other members in real time.</p>
+        <a href="https://t.me/YourTelegramGroupLink" target="_blank" class="button">Join Telegram</a>
+      </div>
+      <div class="card" data-aos="fade-up">
+        <h4>LinkedIn Community</h4>
+        <p>Connect with professionals and grow your network on LinkedIn.</p>
+        <a href="https://www.linkedin.com/" target="_blank" class="button">Join LinkedIn</a>
+      </div>
+      Updated External Website Card 
+      <div class="card" data-aos="fade-up">
+        <h4>External Resource</h4>
+        <p>Visit our external website for more resources and information.</p>
+        <a href="https://www.example.com/" target="_blank" class="button">Visit Website</a>
+      </div>
+      <div class="card" data-aos="fade-up">
+        <h4>Discord Channel</h4>
+        <p>Join our Discord to chat with community members in real time.</p>
+        <a href="⁠return to monke⁠general" target="_blank" class="button">Join Discord</a>
+      </div>
+    </div>
+  </section>
+-->
+<div class="testimonials">
+  <h2>What people are saying</h2>
+  <div class="testimonials-container">
+    <div class="testimonial-card">
+      <div class="testimonial-content">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <div class="testimonial-user">
+          <img src="user1.jpg" alt="User 1" />
+          <div>
+            <h6>John Doe</h6>
+            <span class="company">Company A</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-content">
+        <p>Ut enim ad minim veniam, quis nostrud exercitation.</p>
+        <div class="testimonial-user">
+          <img src="user2.jpg" alt="User 2" />
+          <div>
+            <h6>Jane Smith</h6>
+            <span class="company">Company B</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-content">
+        <p>Duis aute irure dolor in reprehenderit in voluptate.</p>
+        <div class="testimonial-user">
+          <img src="user3.jpg" alt="User 3" />
+          <div>
+            <h6>Emily Johnson</h6>
+            <span class="company">Company C</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="more">
+      and 1000+ more...
+    </div>
+  </div>
+</div>
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <h3>Contact Us</h3>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div>
+        <h5>Made with ❤️ by team 'Reject Humanity, Embrace Monke'</h5>
+      </div>
+      <h3>Follow Us</h3>
+      <ul class="social-links">
+        <li><a href="https://facebook.com" target="_blank"><img src="facebook.png" alt="Facebook" /></a></li>
+        <li><a href="https://twitter.com" target="_blank"><img src="tweet.png" alt="Twitter" /></a></li>
+        <li><a href="https://linkedin.com" target="_blank"><img src="linkedin.png" alt="LinkedIn" /></a></li>
+        <li><a href="https://instagram.com" target="_blank"><img src="insta.png" alt="Instagram" /></a></li>
+      </ul>
+      <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </div>
+   
+  </footer>
+  
+  <!-- AOS Library for scroll animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+</html>
+
+
+
